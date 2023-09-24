@@ -41,6 +41,10 @@
     color:#bd2130;  
 
 }
+.delete-form {
+    display: inline-block;
+}
+
 .delete-btn{
     background-color: transparent;
     border: none;
@@ -92,4 +96,19 @@
 
 #back-link:hover{
     text-decoration: none;
+}
+
+/* CREATE FORM*/
+
+#create-form, #edit-form{
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/*MOBILE*/
+@media(max-width: 480px){
+
+    #home-link {
+        display: none;
+    }
 }
