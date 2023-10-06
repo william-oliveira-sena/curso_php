@@ -1,6 +1,9 @@
 <?php
     require_once("globals.php");
     require_once("db.php");
+
+    $flassMessage = [];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,13 +17,13 @@
      <!--fonttawsen-->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <!--css do projeto-->
-     <link rel="stylesheet" href="../css/styles.css">
+     <link rel="stylesheet" href="<?= $BASE_URL ?>css/styles.css">
 </head>
 <body>
     <header>
         <nav id="main-navbar" class="navbar navbar-expand-lg">
             <a href="<?= $BASE_URL ?>" class="navbar-brand">
-               <img src="../img/logo.svg" alt="MovieStar" id="logo">
+               <img src="<?= $BASE_URL ?>img/logo.svg" alt="MovieStar" id="logo">
                <span id="moviestar-title">MovieStar</span>
             </a>
             <buttton class="navbar-toggler" type="button" data-togle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Togglenavigation">
@@ -42,35 +45,10 @@
         </nav>
 
     </header>
-    <div id="main-container" class="container-fluid">
-        <h1> Corpo do site</h1>
+<?php if(!empty($flassMessage["msg"])): ?>
+    <div class="msg-container">
+         <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"] ?></p>
     </div>
-    <footer id="footer">
-    <div id="social-container">
-        <ul>
-            <li>
-                <a href="#"><i class="fab fa-facebook-square"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </li>
-        </ul>
-    </div>
-    <div id="footer-links-container">
-    <ul>
-        <li><a href="#">Adicionar filme</a></li>
-        <li><a href="#">Adicionar críticas</a></li>
-        <li><a href="#">Entrar / Registrar</a></li>
-    </ul>
-    </div>
-    <p>&copy; 2023 Hora de Codar</p>
-    </footer>
+<?php endif; ?>
 
-    <!--bootstrap js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.js" integrity="sha512-ipBeSMCnlAvS4AEbycy0nTk9KkYr5lUJwFHNvf4IxtV/CDW4qx53mZKUryWtNr6GFaBl11EXyrU6iE3mo6ib2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</body>
-</html>
+
