@@ -60,6 +60,21 @@ class UserDAO implements UserDAOInterface{
         }      
         public function verifyToken($protected = false){
 
+            if(!empty($_SESSION["token"])){
+                //Pega o token da session
+                $token = $_SESSION["token"];
+
+                $user = $this->findByToken($token);
+
+                if($user){
+                    return $user;
+                }else{
+                    $this->message->setMessage("realize a autenticação para acesar esta página","erorr","index.php");
+                }
+            }else{
+                return false;
+            }
+
         }
         public function setTokenToSession($token, $redirect = true){
 
@@ -104,6 +119,27 @@ class UserDAO implements UserDAOInterface{
 
         }
         public function findByToken($token){
+
+            if($token != ""){
+                $stmt = $this->conn->prepare("SELECT * FROM users where token = :token");
+
+                $stmt->bindParam(":token", $token);
+
+                $stmt->execute();
+
+                if($stmt->rowCount() > 0){
+
+                    $data = $stmt->fetch();
+                    $user = $this->buildUser($data);
+
+                    return $user;
+
+                }else{
+                return false;
+                }
+            }else{
+                return false;
+            }
 
         }
         public function changePassword(User $user){
